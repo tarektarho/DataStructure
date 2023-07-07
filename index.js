@@ -2,7 +2,7 @@ import Queue from "./classes/Queue.js"
 import Stack from "./classes/Stack.js"
 import SuperQueue from "./classes/SuperQueue.js"
 import HashTable from "./classes/HashTable.js"
-import circularQueue from "./classes/CircularQueue.js"
+import CircularQueue from "./classes/CircularQueue.js"
 import LinkedList from "./classes/LinkedList.js"
 import LinkedListStack from "./classes/LinkedListStack.js"
 import BinarySearchTree from "./classes/BinarySearchTree.js"
@@ -88,7 +88,7 @@ console.log(superQueue.peek())
 console.log("------ circular queue -----")
 
 //circularQueue with limit
-const cirQueueConst = new circularQueue(5)
+const cirQueueConst = new CircularQueue(5)
 console.log(cirQueueConst.isEmpty())
 
 cirQueueConst.enqueue(10)
