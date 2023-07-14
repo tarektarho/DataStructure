@@ -176,25 +176,15 @@ console.log(bst.isEmpty())
 bst.insert(10)
 bst.insert(5)
 bst.insert(15)
+bst.insert(3)
+bst.insert(7)
 
 console.log(bst.search(5))
-
-bst.remove(5)
 console.log(bst.search(5))
 
-//Random function
-function sumF(...args) {
-  let sum = 0
-  for (let i = 0; i < args.length; i++) {
-    sum += args[1]
-  }
-  return sum
-}
+console.log(bst.findMaxNode(bst.root))
 
-// console.log("sumArgs")
-
-// console.log(sumF(1, 4, 5))
-
+console.log("----end--")
 //Data fun
 const getMoreData = (query, page) => {
   if (page > 3) {
@@ -228,182 +218,6 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-// console.log(await doSearch("test", 1))
-
-// console.log("---Recursion---")
-// //Recursion example
-// function draw(value) {
-//   if (value <= 0) {
-//     console.log("done")
-//     return
-//   }
-
-//   draw(value - 1)
-
-//   for (var i = 0; i < value; i++) {
-//     console.log(i)
-//     for (var j = 0; j < i; j++) {
-//       console.log(j)
-//     }
-//   }
-// }
-
-// draw(5)
-// //merge sort is the way to go with seraching data
-
-// console.log("---linear search---- ")
-// //linear search array [11,23,5,2,7,4]
-
-// const searchArray = [11, 23, 5, 2, 7]
-// console.log(searchArray)
-
-// //Binarty search we must have a sorted array
-// searchArray.sort((a, b) => a - b)
-
-// console.log(searchArray)
-
-// console.log("----binarySearch----")
-// function binarySearch(arr, i) {
-//   var mid = Math.floor(arr.length / 2)
-//   console.log(arr[mid], i)
-
-//   if (arr[mid] === i) {
-//     console.log("match", arr[mid], i)
-//     return arr[mid]
-//   } else if (arr[mid] < i && arr.length > 1) {
-//     console.log("mid lower", arr[mid], i)
-//     return binarySearch(arr.splice(mid, Number.MAX_VALUE), i)
-//   } else if (arr[mid] > i && arr.length > 1) {
-//     console.log("mid higher", arr[mid], i)
-//     return binarySearch(arr.splice(0, mid), i)
-//   } else {
-//     console.log("not here", i)
-//     return -1
-//   }
-// }
-// var result = binarySearch(searchArray, 23)
-
-// console.log(result)
-
-// binarySearch(searchArray, 11)
-
-// console.log("-----bblSort----")
-// // Bubble sort Implementation using Javascript
-
-// // Creating the bblSort function
-// function bblSort(arr) {
-//   for (var i = 0; i < arr.length; i++) {
-//     // Last i elements are already in place
-//     for (var j = 0; j < arr.length - i - 1; j++) {
-//       // Checking if the item at present iteration
-//       // is greater than the next iteration
-//       if (arr[j] > arr[j + 1]) {
-//         // If the condition is true
-//         // then swap them
-//         var temp = arr[j]
-//         arr[j] = arr[j + 1]
-//         arr[j + 1] = temp
-//       }
-//     }
-//   }
-
-//   // Print the sorted array
-//   console.log(arr)
-// }
-
-// // This is our unsorted array
-// var arr = [234, 43, 55, 63, 5, 6, 235, 547]
-
-// // Now pass this array to the bblSort() function
-// bblSort(arr)
-
-// console.log("----bubbleSort---")
-// // Optimized implementation of bubble sort Algorithm
-// function bubbleSort(arr) {
-//   var i, j
-//   var len = arr.length
-
-//   var isSwapped = false
-
-//   for (i = 0; i < len; i++) {
-//     isSwapped = false
-
-//     for (j = 0; j < len; j++) {
-//       if (arr[j] > arr[j + 1]) {
-//         var temp = arr[j]
-//         arr[j] = arr[j + 1]
-//         arr[j + 1] = temp
-//         isSwapped = true
-//       }
-//     }
-
-//     // IF no two elements were swapped
-//     // by inner loop, then break
-//     if (!isSwapped) {
-//       break
-//     }
-//   }
-
-//   // Print the array
-//   console.log(arr)
-// }
-
-// var arr = [243, 45, 23, 356, 3, 5346, 35, 5]
-
-// // calling the bubbleSort Function
-// bubbleSort(arr)
-
-// console.log("-----selectionSort----")
-// function selectionSort(inputArr) {
-//   let n = inputArr.length
-
-//   for (let i = 0; i < n; i++) {
-//     // Finding the smallest number in the subarray
-//     let min = i
-//     for (let j = i + 1; j < n; j++) {
-//       if (inputArr[j] < inputArr[min]) {
-//         min = j
-//       }
-//     }
-//     if (min != i) {
-//       // Swapping the elements
-//       let tmp = inputArr[i]
-//       inputArr[i] = inputArr[min]
-//       inputArr[min] = tmp
-//     }
-//   }
-//   return inputArr
-// }
-
-// console.log(selectionSort(searchArray))
-
-// console.log("-----mergeSort-----")
-// function merge(left, right) {
-//   let sortedArr = [] // the sorted items will go here
-//   while (left.length && right.length) {
-//     // Insert the smallest item into sortedArr
-//     if (left[0] < right[0]) {
-//       sortedArr.push(left.shift())
-//     } else {
-//       sortedArr.push(right.shift())
-//     }
-//   }
-//   // Use spread operators to create a new array, combining the three arrays
-//   return [...sortedArr, ...left, ...right]
-// }
-
-// console.log("-----mergeSort----")
-// function mergeSort(arr) {
-//   // Base case
-//   if (arr.length <= 1) return arr
-//   let mid = Math.floor(arr.length / 2)
-//   // Recursive calls
-//   let left = mergeSort(arr.slice(0, mid))
-//   let right = mergeSort(arr.slice(mid))
-//   return merge(left, right)
-// }
-// console.log(mergeSort([3, 5, 8, 5, 99, 1])) // [1, 3, 5, 5, 8, 99]
-
 // Example usage of the Dictionary class
 const dict = new Dictionary()
 dict.add("apple", "A sweet fruit")
@@ -419,3 +233,364 @@ console.log(dict.size()) // Output: 2
 
 console.log(dict.keys()) // Output: ['apple', 'cherry']
 console.log(dict.values()) // Output: ['A sweet fruit', 'A small red fruit']
+
+console.clear()
+
+console.log("Adjacency Matrix of a Graph")
+
+const matrix = [
+  [0, 1, 0],
+  [1, 0, 1],
+  [0, 1, 0],
+]
+
+console.log(matrix[1])
+
+console.log("Adjacency List of a Graph")
+const adjacencyList = {
+  A: ["B"],
+  B: ["A", "C"],
+  C: ["B"],
+}
+
+console.log(adjacencyList["B"])
+
+import Graph from "./classes/Graph.js"
+const graph = new Graph()
+
+graph.addVertex("A")
+graph.addVertex("B")
+graph.addVertex("C")
+
+graph.addEdge("A", "B")
+graph.addEdge("B", "C")
+
+graph.dispaly()
+
+console.log(graph.hasEdge("A", "C"))
+
+graph.dispaly()
+
+console.log("----merge list---")
+class SinglyLinkedListNode {
+  constructor(data) {
+    this.data = data
+    this.next = null
+  }
+}
+
+function mergeLists(head1, head2) {
+  // Handle empty lists by returning other head if empty
+  if (!head1) {
+    return head2
+  }
+  if (!head2) {
+    return head1
+  }
+
+  //set current to null
+  let current = null
+  //set mergedHead
+  let mergedHead = null
+  // Determine the head.data of the merged list
+  if (head1.data <= head2.data) {
+    mergedHead = head1
+    head1 = head1.next
+  } else {
+    mergedHead = head2
+    head2 = head2.next
+  }
+  //set current to mergedHead to keep track
+  current = mergedHead
+
+  //while loop will run if head1 && head2
+  while (head1 && head2) {
+    //Merge the lists by comparing nodes then setting the current.next
+    if (head1.data <= head2.data) {
+      current.next = head1
+      head1 = head1.next
+    } else {
+      current.next = head2
+      head2 = head2.next
+    }
+    //set current to next
+    current = current.next
+  }
+  // Append remaining nodes to current.next from either list
+  // if else
+  if (head1) {
+    current.next = head1
+  } else {
+    current.next = head2
+  }
+
+  //return pointer of the mergedList
+  return mergedHead
+}
+
+//time O(m+n) linear
+//space = O(1) constant
+
+// Example usage:
+// Create sample linked lists
+const listA = new SinglyLinkedListNode(1)
+listA.next = new SinglyLinkedListNode(3)
+listA.next.next = new SinglyLinkedListNode(5)
+
+const listB = new SinglyLinkedListNode(2)
+listB.next = new SinglyLinkedListNode(4)
+listB.next.next = new SinglyLinkedListNode(6)
+
+// Merge the lists
+const mergedList = mergeLists(listA, listB)
+
+// Print the merged list
+let current = mergedList
+while (current) {
+  console.log(current.data)
+  current = current.next
+}
+
+console.log("--here--")
+
+function processData(input) {
+  // slice(1 since the first line is empty line)
+  const queries = input.split("\n").slice(1) // Remove the first line and split the remaining input into queries
+  const stack1 = [] // First stack for enqueue operation
+  const stack2 = [] // Second stack for dequeue operation
+
+  for (let i = 0; i < queries.length; i++) {
+    const [type, value] = queries[i].split(" ") // Split the query into type and value
+
+    if (type === "1") {
+      stack1.push(value) // Enqueue the value by pushing it to stack1
+    } else if (type === "2") {
+      if (stack2.length === 0) {
+        // If stack2 is empty, transfer all elements from stack1 to stack2
+        while (stack1.length > 0) {
+          //remove last element and return it so we can add it to stack2
+          stack2.push(stack1.pop())
+        }
+      }
+      stack2.pop() // Dequeue the element by popping it from stack2
+    } else if (type === "3") {
+      if (stack2.length === 0) {
+        // If stack2 is empty, transfer all elements from stack1 to stack2
+        while (stack1.length > 0) {
+          //remove last element and return it so we can add it to stack2
+          stack2.push(stack1.pop())
+        }
+      }
+      console.log(stack2[stack2.length - 1]) // Print the front element by accessing the last element of stack2
+    }
+  }
+}
+
+// Example usage
+const input = `
+10
+1 42
+2
+1 14
+3
+1 28
+3
+1 60
+1 78
+2
+2
+`
+
+processData(input)
+
+console.log("-----Balanced Brackets----")
+
+//isBalanced(s)
+
+// A bracket = (,), {,}, [, or].
+// Two brackets => matched pair if(an opening braket `(, [, or {` ) occurs to the left of closing braket (`), ], }` ) of the exact same type.
+// 3 types of matched pairs  [], {} and  ()
+// the matching pair of brackets is not balanced != if the set of brackets it encloses are not matched for example {[(])]} becuase the contents in        between {and } are not balanced.
+// the pair of square brackets encloses a single, unbalanced opening baracket(, and the pair of paranethesse encloses a single, unbalanced closing square bracket, ].
+
+//Logic it's balanced if the following condition are met:
+// if (it contains no unmatched brackets)
+// if the subset of brackets enclosed within the confines of a matched pair of brackets is also a matched pair of brackets.
+
+//Givien n strings of brackets, determine whether each sequence of brackets is balanced. if a string is balanced, return YES else NO
+
+/**
+Input Format
+The first line contains a single integer n, the number of strings.
+Each of the next n lines contains a single string s, a sequence of brackets.
+ */
+
+/**
+ * The function is expected to return a STRING.
+ * The function accepts STRING s as parameter.
+ * @param {*} s string of brackets '{}' '[]'
+ */
+function isBalanced(s) {
+  const stack = []
+
+  // Iterate through each bracket in the sequence
+  for (let i = 0; i < s.length; i++) {
+    const bracket = s[i]
+
+    // If it's an opening bracket, push it to the stack
+    if (isOpeningBracket(bracket)) {
+      stack.push(bracket)
+    }
+    // If it's a closing bracket, check if it matches the top of the stack
+    else if (isClosingBracket(bracket)) {
+      if (!isMatchingBracket(stack.pop(), bracket)) {
+        return "NO" // Unmatched closing bracket or empty stack, not balanced
+      }
+    }
+  }
+  console.log(stack, "stack")
+
+  // If the stack is empty, all brackets are matched and it's balanced
+  return stack.length === 0 ? "YES" : "NO"
+}
+
+// Helper function to check if a character is an opening bracket
+function isOpeningBracket(bracket) {
+  return bracket === "(" || bracket === "[" || bracket === "{"
+}
+
+// Helper function to check if a character is a closing bracket
+function isClosingBracket(bracket) {
+  return bracket === ")" || bracket === "]" || bracket === "}"
+}
+
+// Helper function to check if two brackets are a matching pair
+function isMatchingBracket(opening, closing) {
+  return (
+    (opening === "(" && closing === ")") || (opening === "[" && closing === "]") || (opening === "{" && closing === "}")
+  )
+}
+
+console.log(isBalanced("{[(])}"))
+
+console.clear()
+
+//Pairs
+
+// given an array of int and target value, determine the number of pairs of array ele that have a difference equal to the target value
+
+function pairs(k, arr) {
+  //init set with the following array
+  const set = new Set(arr)
+  //set count
+  let count = 0
+
+  //iterates through the array and for each element num, checks if num + k exists in the set. If it does, it means there is a pair with the required difference, so the count is incremented.
+  for (let i = 0; i < arr.length; i++) {
+    const num = arr[i]
+    if (set.has(num + k)) {
+      count++
+    }
+  }
+
+  return count
+}
+
+console.log(pairs(2, [1, 5, 3, 4, 2]))
+
+/**
+Explanation:
+1. We use two maps, charCountMap and freqCountMap, to keep track of the character frequencies and the frequency of frequencies, respectively.
+2. First, we iterate through the string 's and count the frequency of each character using the charCountMap
+3. Then, we iterate through the values of charCountMap and count the frequency of each frequency, storing it in the 'freqCountMap
+4. If all characters have the same frequency, meaning freqCountMap has only one entry, we return "YES" as it is a valid string.
+5. If 'freqCountMap has more than two different frequencies, it is not valid, so we return "NO"
+6. If there are exactly two different frequencies, we check if one of them occurs only once and has a count of 1. In this case, we return "YES" as it is a valid string.
+7. Additionally, if the difference between the two frequencies is 1 and one of them occurs only once, we also return "YES" as it is valid.
+8. If none of the above conditions are met, we return "NO" as it is not a valid string.
+ */
+
+function isValid1(s) {
+  //using hashtable
+  const charCountMap = new Map()
+  const freqCountMap = new Map()
+
+  // Count the frequency of each character
+  for (let char of s) {
+    charCountMap.set(char, (charCountMap.get(char) || 0) + 1)
+  }
+
+  // Count the frequency of each frequency
+  for (let count of charCountMap.values()) {
+    freqCountMap.set(count, (freqCountMap.get(count) || 0) + 1)
+  }
+
+  // If all characters have the same frequency, it is valid
+  if (freqCountMap.size === 1) {
+    return "YES"
+  }
+
+  // If there are more than two different frequencies, it is not valid
+  if (freqCountMap.size > 2) {
+    return "NO"
+  }
+
+  // If there are exactly two different frequencies
+  let [firstFreq, secondFreq] = freqCountMap.keys()
+  let [firstCount, secondCount] = freqCountMap.values()
+
+  // If one frequency occurs only once and has a count of 1, it is valid
+  if ((firstCount === 1 && firstFreq === 1) || (secondCount === 1 && secondFreq === 1)) {
+    return "YES"
+  }
+
+  // If the difference between the frequencies is 1 and one frequency occurs only once, it is valid
+  if (Math.abs(firstFreq - secondFreq) === 1 && (firstCount === 1 || secondCount === 1)) {
+    return "YES"
+  }
+
+  // Otherwise, it is not valid
+  return "NO"
+}
+
+function isValid(s) {
+  const charCountArr = new Array(26).fill(0) // Assuming only lowercase English letters are considered
+
+  // Count the frequency of each character
+  for (let char of s) {
+    const charCode = char.charCodeAt(0) - 97 // Convert character to index (0-25)
+    charCountArr[charCode]++
+  }
+
+  let maxCount = 0
+  let minCount = Infinity
+
+  // Find the maximum and minimum character counts
+  for (let count of charCountArr) {
+    if (count > 0) {
+      maxCount = Math.max(maxCount, count)
+      minCount = Math.min(minCount, count)
+    }
+  }
+
+  // If all characters have the same frequency, it is valid
+  if (maxCount === minCount) {
+    return "YES"
+  }
+
+  // If there are more than two different frequencies, it is not valid
+  if (maxCount > minCount + 1) {
+    return "NO"
+  }
+
+  // If the difference between the frequencies is 1 and there is only one character with the maximum count, it is valid
+  if (maxCount - minCount === 1 && charCountArr.filter((count) => count === maxCount).length === 1) {
+    return "YES"
+  }
+
+  // Otherwise, it is not valid
+  return "NO"
+}
+
+console.log(isValid("aabbcc"))
+console.log(isValid("aabbccddeefghi"))
