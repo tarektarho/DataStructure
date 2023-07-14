@@ -3,8 +3,8 @@ export default class SuperQueue {
   constructor() {
     //object items with object we must keep track of the items
     this.items = {}
-    this.rear = 0
     this.front = 0
+    this.rear = 0
   }
 
   //enqueue

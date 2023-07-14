@@ -1,4 +1,5 @@
 import Node from "../classes/Node.js"
+import SuperQueue from "./SuperQueue.js"
 export default class BinarySearchTree {
   constructor() {
     this.root = null
@@ -66,6 +67,46 @@ export default class BinarySearchTree {
     }
   }
 
+  preOrder(root) {
+    if (root) {
+      console.log(root.value)
+      this.preOrder(root.left)
+      this.preOrder(root.right)
+    }
+  }
+
+  inOrder(root) {
+    if (root) {
+      this.inOrder(root.left)
+      console.log(root.value)
+      this.inOrder(root.right)
+    }
+  }
+
+  postOrder(root) {
+    if (root) {
+      this.inOrder(root.left)
+      this.inOrder(root.right)
+      console.log(root.value)
+    }
+  }
+
+  levelOrder() {
+    //use the optimised queue implementaion
+    const queue = new SuperQueue()
+    queue.enqueue(this.root)
+    while (queue.size()) {
+      let curr = queue.dequeue()
+      console.log(curr.value)
+      if (curr.left) {
+        queue.enqueue(curr.left)
+      }
+      if (curr.right) {
+        queue.enqueue(curr.right)
+      }
+    }
+  }
+
   /**
    *
    * @param {*} value
@@ -125,6 +166,14 @@ export default class BinarySearchTree {
       return node
     } else {
       return this._findMinNode(node.left)
+    }
+  }
+
+  findMaxNode(root) {
+    if (!root.right) {
+      return root.value
+    } else {
+      return this.findMaxNode(root.right)
     }
   }
 }
