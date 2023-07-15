@@ -1066,13 +1066,62 @@ If no solution is found after iterating through the entire cost array, we return
 
 function formingMagicSquare(s) {
   // Write your code here
-  const len = s.length
-  let arr = []
-  for (let i = 0; i < len; i++) {
-    arr.push(s[i])
-  }
+  const possibleSquare = [
+    [
+      [8, 1, 6],
+      [3, 5, 7],
+      [4, 9, 2],
+    ],
+    [
+      [4, 3, 8],
+      [9, 5, 1],
+      [2, 7, 6],
+    ],
+    [
+      [2, 9, 4],
+      [7, 5, 3],
+      [6, 1, 8],
+    ],
+    [
+      [6, 7, 2],
+      [1, 5, 9],
+      [8, 3, 4],
+    ],
+    [
+      [6, 1, 8],
+      [7, 5, 3],
+      [2, 9, 4],
+    ],
+    [
+      [8, 3, 4],
+      [1, 5, 9],
+      [6, 7, 2],
+    ],
+    [
+      [4, 9, 2],
+      [3, 5, 7],
+      [8, 1, 6],
+    ],
+    [
+      [2, 7, 6],
+      [9, 5, 1],
+      [4, 3, 8],
+    ],
+  ]
 
-  console.log(arr)
+  let minCost = Infinity
+  for (let square of possibleSquare) {
+    let cost = 0
+
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        cost += Math.abs(square[i][j] - s[i][j])
+      }
+    }
+
+    minCost = Math.min(minCost, cost)
+  }
+  return minCost
 }
 
 console.log("----formingMagicSquare---")
@@ -1082,3 +1131,28 @@ formingMagicSquare([
   [3, 5, 7],
   [8, 1, 5],
 ])
+
+log("---encryption---")
+
+function encryption(s) {
+  //remove white space using regx \s/ for white sapce
+  let nospace = s.replace(/\s/g, "")
+
+  const l = nospace.length
+  // Math.floor always rounds down and returns the largest integer less than or equal to a given number.
+  const row = Math.floor(Math.sqrt(l))
+  // Math.ceil always rounds up and returns the smallest integer greater than or equal to a given number.
+  const col = Math.ceil(Math.sqrt(l))
+
+  let newStr = ""
+  for (let i = 0; i < col; i++) {
+    for (let j = i; j < l; j += col) {
+      newStr += nospace[j]
+    }
+    newStr += " "
+  }
+  //triming any extra space
+  return newStr.trim()
+}
+
+console.log(encryption("haveaniceday"))
