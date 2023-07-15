@@ -5,7 +5,6 @@ export default class HashTable {
   }
 
   /**
-   * change to private
    * @param {*} key
    * @returns
    */
@@ -65,3 +64,14 @@ export default class HashTable {
     }
   }
 }
+
+/**
+ * useage
+  const table = new HashTable(50)
+
+  table.set("name", "Tarek")
+  table.set("age", 25)
+  table.display()
+
+  console.log(table.get("name"))
+ */
