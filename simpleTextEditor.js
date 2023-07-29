@@ -53,31 +53,3 @@ console.log(processData(ops2))
 // f
 // g
 // d
-const randArr = [5, 2, 6, 1, 2, 3, 5, 11]
-const str = "hello how are you"
-console.log([...new Set(randArr)].sort())
-
-console.log([...new Set(randArr)].sort().reduce((total, val) => total + val, 0))
-
-//slice retrun shallow copy of portaion of an array
-const newArray = randArr.slice(0, randArr.length - 1)
-
-console.log(newArray)
-
-//pop will remove the last item and return it
-console.log(newArray.pop())
-
-//add el to the begining <-> push it add it to the end
-console.log(newArray.unshift(1))
-console.log(newArray)
-//remove first el and return in <-> pop
-console.log(newArray.shift())
-
-//every check if it's postive
-console.log(randArr.every((item) => item > 0))
-
-//indexOf return the frist el of each that can found in array
-
-console.log(newArray.indexOf(5))
-
-console.log(str.split(" "))
