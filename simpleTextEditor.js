@@ -6,40 +6,35 @@
 
 /**
  *
- * @param {*} operations  array of operations
+ * @param {*} input  array of operations
  */
-function processData(operations) {
-  //split a array to sub array with new line
-  //var lines = operations.split("\n")
-  //skipping splitting the array since we have it splited in already
-  var lines = operations
-  var str = ""
-  //keep track of last
-  var last = []
+function processData(input) {
+  //input = input.split("\n")
+  input.splice(0, 1)
 
-  for (var i = 1; i <= parseInt(lines[0]); i++) {
-    var command = parseInt(lines[i].split(" ")[0])
-    let args = lines[i].split(" ")[1]
+  let final = ""
+  let finalBuffer = [final]
 
-    switch (command) {
-      case 1:
-        //append op
-        last.push(str)
-        str = str + args
-        break
-      case 2:
-        //delete op
-        last.push(str)
-        str = str.substring(0, str.length - parseInt(args))
-        break
-      case 3:
-        //print op
-        //charAt(the index of char in str)
-        console.log(str.charAt(parseInt(args) - 1))
-        break
-      case 4:
-        str = last.pop()
-        break
+  for (var i = 0; i < input.length; i++) {
+    let el = input[i]
+    if (el.length > 1) {
+      let elSplit = el.split(" ")
+      let ops = elSplit[0]
+      let item = elSplit[1]
+      if (ops === "1") {
+        finalBuffer.push(final)
+        final = final + item
+      }
+      if (ops === "2") {
+        finalBuffer.push(final)
+        final = final.substring(0, final.length - item)
+      }
+
+      if (ops === "3") {
+        console.log(final.substring(item - 1, item))
+      }
+    } else {
+      final = finalBuffer.pop()
     }
   }
 }
@@ -52,7 +47,7 @@ let ops = ["1 fg", "3 6", "2 5", "4", "3 7", "4", "3 4"]
 let ops2 = ["8", "1 abc", "3 3", "2 3", "1 xy", "3 2", "4", "4", "3 1"] // output c y a
 
 //input is not correct
-log(processData(ops2))
+console.log(processData(ops2))
 
 //result
 // f
