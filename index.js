@@ -594,3 +594,260 @@ function isValid(s) {
 
 console.log(isValid("aabbcc"))
 console.log(isValid("aabbccddeefghi"))
+
+console.log("-----climbingLeaderboard-----")
+
+function climbingLeaderboard(ranked, player) {
+  //init started playerRange as 0
+  //remove duplicates
+  // determine the playerRank by iterating over the number Of players then compare it to the rank list
+  // iterate over the game array each time increase the player score by the players
+
+  /**
+  Creates a new array uniqueRanked by removing duplicate scores from the ranked array using a Set data structure.
+  It ensures that each score in uniqueRanked is unique and maintains the order of the scores from ranked.
+   */
+  const uniqueRanked = [...new Set(ranked)]
+  //const uniqueRanked = Array.from(new Set(ranked))
+  /**
+   * initializes an empty array results to store the rankings of each player score.
+   */
+  const results = []
+  /**
+   * initializes a variable i to the last index of the uniqueRanked array.
+   * It will be used to iterate through the scores in uniqueRanked.
+   */
+  let i = uniqueRanked.length - 1
+
+  /**
+   * starts a loop that iterates through each score in the player array.
+   */
+  for (const score of player) {
+    /**
+     * starts a nested loop. It continues to decrement i as long as i is greater than or equal to 0
+     * and the current player score is greater than or equal to the score at index i in the uniqueRanked array.
+     * This loop helps to find the correct rank for the player's score.
+     */
+    while (i >= 0 && score >= uniqueRanked[i]) {
+      i--
+    }
+    /*
+    adds the rank of the player's score to the results array. Since the ranking is 1-indexed, i + 2 is used.
+     */
+    results.push(i + 2)
+  }
+
+  return results
+}
+
+//big-O O(n+m) time
+// space O(n)
+
+//rankedCurr = [100, 100, 50, 40,40,  20, 10]
+//playerCurr = [5, 25, 50, 120] // score per game
+console.log(climbingLeaderboard([100, 100, 50, 40, 40, 20, 10], [5, 25, 50, 120]))
+
+//criteria:
+// w > orginal word
+// w < word that meets the first condition
+// example w = abcd
+
+function biggerIsGreater(w) {
+  // Step 1: Find the character to swap
+  let i = w.length - 2
+  console.log(i, w[i])
+  while (i >= 0 && w[i] >= w[i + 1]) {
+    i--
+  }
+
+  // Step 2: Check if no character is found
+  if (i === -1) {
+    return "no answer"
+  }
+
+  // Step 3: Find the character to swap with
+  let j = w.length - 1
+  while (j > i && w[j] <= w[i]) {
+    j--
+  }
+
+  // Step 4: Swap characters
+  let charArray = w.split("")
+  ;[charArray[i], charArray[j]] = [charArray[j], charArray[i]]
+
+  // Step 5: Sort the remaining characters
+  const sortedSubstring = charArray.slice(i + 1).sort()
+
+  // Step 6: Return the modified word
+  return charArray
+    .slice(0, i + 1)
+    .concat(sortedSubstring)
+    .join("")
+}
+
+console.log(biggerIsGreater("hefg"), "-----biggerIsGreater----")
+
+console.log("----Swap array----")
+
+let array = [1, 2, 3, 4, 5, 6, 7, 8]
+console.log(array)
+const n = array.length
+const reverse = (array) => {
+  for (let i = 0; i < Math.floor(n / 2); i++) {
+    ;[array[i], array[n - 1 - i]] = [array[n - 1 - i], array[i]]
+  }
+  return array
+}
+
+console.log(reverse(array), "revers")
+
+function isIsogram(str) {
+  return new Set(str.toLowerCase()).size === str.length
+}
+
+console.log(isIsogram("aba"), "isIsogram")
+
+function timeInWords(h, m) {
+  const numberWords = [
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "twelve",
+    "thirteen",
+    "fourteen",
+    "fifteen",
+    "sixteen",
+    "seventeen",
+    "eighteen",
+    "nineteen",
+    "twenty",
+    "twenty one",
+    "twenty two",
+    "twenty three",
+    "twenty four",
+    "twenty five",
+    "twenty six",
+    "twenty seven",
+    "twenty eight",
+    "twenty nine",
+  ]
+
+  if (m === 0) {
+    return `${numberWords[h]} o' clock`
+  } else if (m === 15) {
+    return `quarter past ${numberWords[h]}`
+  } else if (m === 30) {
+    return `half past ${numberWords[h]}`
+  } else if (m === 45) {
+    return `quarter to ${numberWords[h + 1]}`
+  } else if (m === 1) {
+    return `one minute past ${numberWords[h]}`
+  } else if (m < 30) {
+    return `${numberWords[m]} minutes past ${numberWords[h]}`
+  } else {
+    return `${numberWords[60 - m]} minutes to ${numberWords[h + 1]}`
+  }
+}
+
+// Example usage:
+console.log(timeInWords(5, 0)) // five o' clock
+console.log(timeInWords(5, 1)) // one minute past five
+console.log(timeInWords(5, 10)) // ten minutes past five
+console.log(timeInWords(5, 15)) // quarter past five
+console.log(timeInWords(5, 30)) // half past five
+console.log(timeInWords(5, 40)) // twenty minutes to six
+console.log(timeInWords(5, 45)) // quarter to six
+console.log(timeInWords(5, 47)) // thirteen minutes to six
+console.log(timeInWords(5, 28)) // twenty eight minutes past five
+
+console.clear()
+
+function chocolateFeast(amountOfMoney, cost, numberOfWrappers) {
+  // 10     2          5          =  (10/2 = 5 = wraps so + 1) =  6
+  // 12     4          4          =  (12 / 4 = 3 < wraps ) 3
+  // 6      2          2          = (6/2 = 3 he have 2 + 2 left it cost 2   3 + 2) = 5
+  // money. cost.   warappers     eaten chocolates
+  // 15       3        2        = (  15/3 = 5      cost 3 - 2  = 1, 2 - 1 = 1) = 9
+  //                           (amountOfMoney / cost)      wraps
+  //                              = 6
+  //                              = 3
+  //                              = 3
+  // if rest = 2 we can get new coco  he need at least 2 wraps to get coco
+
+  // calculate the init number he can eat
+  let totalChocolates = Math.floor(amountOfMoney / cost)
+  //set the initial number of wraps
+  let wrappers = totalChocolates
+  //whiel loop to keep exchanging for chocolate until Bobby can no longer get a free chocolate
+  while (wrappers >= numberOfWrappers) {
+    // Calculate the number of chocolates Bobby can get from exchanging wrappers
+    const exchangedChocolates = Math.floor(wrappers / numberOfWrappers)
+    // Add the exchanged chocolates to the total
+    totalChocolates += exchangedChocolates
+    // Update the number of remaining wrappers
+    wrappers = exchangedChocolates + (wrappers % numberOfWrappers)
+  }
+
+  return totalChocolates
+}
+//big-o = O(log(n/m))
+console.log(chocolateFeast(15, 3, 2), "chocolateFeast") //9
+
+// Intewview qeustion return true if the rectangle overlap else retrun false
+
+// one main q two follow ups
+// looking for most opt
+function checkRectangleOverlap(rectangles) {
+  for (let i = 0; i < rectangles.length; i++) {
+    const rectangleA = rectangles[i]
+    for (let j = i + 1; j < rectangles.length; j++) {
+      const rectangleB = rectangles[j]
+
+      // Calculate the x-coordinate ranges of the rectangles
+      const rangeAx = [rectangleA.x, rectangleA.x + rectangleA.width]
+      const rangeBx = [rectangleB.x, rectangleB.x + rectangleB.width]
+
+      // Check if the x-coordinate ranges overlap
+      if (rangeAx[0] < rangeBx[1] && rangeBx[0] < rangeAx[1]) {
+        return true // Rectangles overlap
+      }
+    }
+  }
+
+  return false // Rectangles do not overlap
+}
+
+//Optimized solutions
+function checkRectangleOverlapOpt(rectangles) {
+  //storing rectagnles length in const outside the for loop so, we don't have to get length at every iteration
+  const rectangleLength = rectangles.length
+  for (let i = 0; i < rectangleLength; i++) {
+    const rectangleA = rectangles[i]
+    const rectangleB = rectangles[i + 1]
+    // Check if rectangles overlap
+    let leftCorner = rectangleA.x + rectangleA.width > rectangleB.x
+    let rightCorner = rectangleB.x + rectangleB.width > rectangleA.x
+    if (leftCorner && rightCorner) {
+      return true // Rectangles overlap
+    }
+  }
+
+  return false // Rectangles do not overlap
+}
+
+const rectangles = [
+  { x: 0, width: 15, height: 5 },
+  { x: 10, width: 5, height: 5 },
+  { x: 20, width: 5, height: 5 },
+]
+
+console.log(checkRectangleOverlapOpt(rectangles), "rectangles") // true

@@ -218,7 +218,7 @@ function stringToArray(string) {
   return result
 }
 
-log(stringToArray("hello, world"))
+log(stringToArray("hello, world"), "stringToArray")
 
 //Simple convert string to array
 
@@ -522,7 +522,10 @@ console.log(beautifulSubarraysOPT(array, oddNum))
 console.clear()
 
 /**
- To solve this problem, you can iterate through the array and count the number of positive, negative, and zero elements. Then, you can calculate the ratios by dividing the respective counts by the total number of elements in the array. Finally, you can print the ratios with the specified decimal places.
+ To solve this problem, you can iterate through the array and count the number of positive, 
+ negative, and zero elements. Then, you can calculate the ratios by dividing the respective 
+ counts by the total number of elements in the array. Finally, 
+ you can print the ratios with the specified decimal places.
  */
 
 function plusMinus(arr) {
@@ -1156,3 +1159,201 @@ function encryption(s) {
 }
 
 console.log(encryption("haveaniceday"))
+
+function arrayManipulation(n, queries) {
+  // Create an array of zeros with length n+1
+  const arr = Array(n + 1).fill(0)
+
+  // Perform the operations
+  for (let i = 0; i < queries.length; i++) {
+    const [a, b, k] = queries[i]
+    arr[a - 1] += k // Add k to the starting index of the operation
+    arr[b] -= k // Subtract k from the next index after the operation range
+  }
+
+  // Calculate the maximum value by accumulating the array elements
+  let max = 0
+  let sum = 0
+  for (let i = 0; i < n; i++) {
+    sum += arr[i]
+    max = Math.max(max, sum)
+  }
+
+  return max
+}
+
+//time complexity is O(q + n), which simplifies to O(max(q, n))
+//space complexity of the method is O(n)
+//big-O O(n+m)
+
+console.log("-----buyTofu---")
+
+/**
+ * sudo code 
+1 - initalize varibles to keep track of the counts of mon and monme coins, the sum of all coin values, and the minimum number of coins needed for Tofu
+  - Initialize variables: monCount = 0, monmeCount = 0, totalValue = 0.
+2 - Split the box string into an array of items using space as the delimiter.
+3 -Iterate through each item in the box array.
+    - If the item is 'mon', increment monCount by 1.
+    - If the item is 'monme', increment monmeCount by 1.
+    - If the item is neither 'mon' nor 'monme', skip it..
+4 - Calculate the minimum number of coins needed for Tofu:
+    - Divide the cost by the value of the monme coin. Let's call this quotient as monmeNeeded.
+    - Subtract monmeNeeded from monmeCount and assign the result to monmeCount.
+    - Subtract monmeNeeded multiplied by the value of the monme coin from totalValue and assign the result to totalValue.
+    - Add monmeNeeded multiplied by the value of the mon coin to totalValue.
+    - Calculate the number of mon coins needed to make the totalValue equal to the cost. Let's call this monNeeded.
+5 - Check the conditions to determine the result:
+    - If monNeeded is negative or monmeCount is negative, return "leaving the market".
+    - Otherwise, return [monCount, monmeCount, totalValue, monNeeded].
+
+ */
+function buyTofu(cost, box) {
+  const countOfMon = box.split(" ").filter((x) => x === "mon").length
+  const countOfMonme = box.split(" ").filter((x) => x === "monme").length
+  const sumOfcoin = countOfMon + countOfMonme * 60
+  const monmeNeeded = Math.min(Math.floor(cost / 60), countOfMonme)
+  const monNeeded = cost - monmeNeeded * 60
+
+  if (monmeNeeded > countOfMonme || monNeeded > countOfMon) {
+    return "leaving the market"
+  }
+
+  const minNumberOfCoins = monNeeded + monmeNeeded
+
+  return [countOfMon, countOfMonme, sumOfcoin, minNumberOfCoins]
+  //[count of mon coins in box, count of monme coins in box,sum of all coins value in box, minimum number of coins needed for Tofu]
+}
+
+console.log(buyTofu(5, "mon monme"))
+
+function filterList(l) {
+  return l.filter((val) => typeof val === typeof 1)
+}
+
+console.log(filterList([1, 2, "a", "b"]), "filterList")
+
+console.log("-------organizingContainers-----")
+function organizingContainers(containers) {
+  // [ [ 1, 1 ], [ 1, 1 ] ]
+  const n = containers.length
+  const containerCounts = new Array(n).fill(0)
+  const ballTypes = new Array(n).fill(0)
+
+  console.log(ballTypes, containerCounts)
+
+  for (let i = 0; i < n; i++) {
+    // O(n^2)
+    const container = containers[i]
+    for (let j = 0; j < n; j++) {
+      const ballCount = container[j]
+      containerCounts[i] += ballCount
+      ballTypes[j] += ballCount
+    }
+  }
+
+  //sort to make com
+  containerCounts.sort()
+  ballTypes.sort() // 2 * o(nlogn)
+  console.log(ballTypes, containerCounts)
+
+  for (let i = 0; i < n; i++) {
+    // O(n)
+    if (containerCounts[i] !== ballTypes[i]) return "Impossible"
+  }
+
+  return "Possible"
+}
+
+console.log(
+  organizingContainers([
+    [0, 2],
+    [1, 1],
+  ])
+)
+
+console.log("-----equalStacks-----")
+function equalStacks(h1, h2, h3) {
+  let mainArr = [h1, h2, h3]
+  console.log("mainArr: ", mainArr)
+
+  let sumArr = mainArr.map((el) => el.reduce((acc, value) => acc + value))
+  console.log("sumArr: ", sumArr)
+
+  for (var i = 0; i < Infinity; i++) {
+    if (sumArr.every((el) => el === sumArr[0])) {
+      console.log("all are equal")
+      break
+    }
+
+    console.log("sumArr: ", sumArr)
+    console.log("mainArr: ", mainArr)
+
+    let findMax = Math.max(...sumArr)
+    console.log("findMax: ", findMax)
+
+    let maxIndex = sumArr.indexOf(findMax)
+    console.log("maxIndex: ", maxIndex)
+
+    let a = sumArr[maxIndex]
+    console.log(a, "a")
+
+    sumArr[maxIndex] = sumArr[maxIndex] - mainArr[maxIndex].shift()
+
+    let b = sumArr[maxIndex]
+    console.log(b)
+
+    // end of FOR LOOP i
+  }
+
+  return sumArr[0]
+
+  // ! end of the function
+}
+
+let h1a = [3, 2, 1, 1, 1]
+let h2a = [4, 3, 2]
+let h3a = [1, 1, 4, 1] // should be 5
+
+let h1b = [1, 2, 1, 1]
+let h2b = [1, 1, 2]
+let h3b = [1, 1] // should be  2
+
+console.log(equalStacks(h1b, h2b, h3b), "equalStacks")
+function mario() {
+  const height = 5
+  let ex = ""
+  for (var i = 0; i < height; i++) {
+    // revers the printing of loop
+    for (var k = height - i; k > 1; k--) {
+      ex += " "
+      //console.log(" ")
+    }
+    for (var j = 0; j <= i; j++) {
+      ex += "#"
+      //console.log("#")
+    }
+    ex += "\n"
+    //console.log("\n")
+  }
+
+  console.log(ex)
+}
+
+mario()
+
+function scoreWord(word, titles) {
+  const number = new mapNumbers([23, 22])
+  console.log(typeof number)
+
+  console.log(number)
+}
+
+scoreWord()
+
+function mapNumbers(numbers) {
+  for (const number of numbers) {
+    this[number] ??= 0
+    this[number]++
+  }
+}
